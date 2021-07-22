@@ -5,8 +5,6 @@ let square = {
     c1: '', c2: '', c3: ''
 };
 
-let moves = ['a1', 'a2','a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
-
 let player1 = '';
 let player2 = '';
 let currentPlayer = '';
@@ -106,6 +104,10 @@ function reset () {
 
     renderSquare();
     renderInfo();
+
+    document.querySelectorAll('.item').forEach(item => {
+        item.classList.remove("won");
+    });
 }
 
 function renderSquare () {
