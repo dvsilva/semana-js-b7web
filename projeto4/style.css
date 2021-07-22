@@ -64,6 +64,15 @@ h1 {
 .item.won {
     color: yellow;
 }
+.item.choosed {
+    animation: spotlight 2s;
+}
+@keyframes spotlight
+{
+    from {background:#444;}
+    to {background:#333;}
+}
+
 
 .info {
     width: 300px;

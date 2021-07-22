@@ -41,23 +41,39 @@ function itemClick(event) {
    let item = event.target.getAttribute('data-item');
 
    if(playing && square[item] == '') {
-       square[item] = currentPlayer;
-       renderSquare();
-       tooglePlayer();
-       computerPlay();
+        square[item] = currentPlayer;
+        toggleSpotlightSquare(event.target);
+
+        renderSquare();
+        tooglePlayer();
+
+        if(playing) {
+            setTimeout(() => {
+                computerPlay();
+            }, 1000);
+        }
    }
+}
+
+function toggleSpotlightSquare(element) {
+    element.classList.toggle("choosed");
 }
 
 function computerPlay() {
     let validChooses = getValidChoose();
 
-    let random = Math.floor(Math.random() * validChooses.length);
+    if(validChooses.length > 0) {
+        let random = Math.floor(Math.random() * validChooses.length);
 
-    let item = validChooses[random];
-    square[item] = currentPlayer;
+        let item = validChooses[random];
+        square[item] = currentPlayer;
 
-    renderSquare();
-    tooglePlayer();
+        let element = document.querySelector(`div[data-item=${item}]`);
+        toggleSpotlightSquare(element);
+
+        renderSquare();
+        tooglePlayer();
+    }
 }
 
 function getValidChoose() {
@@ -82,12 +98,23 @@ function startGame () {
         player2 = 'o';
     }
     else {
-        let random = Math.floor(Math.random() * 2);
-        player2 = (random === 0) ? 'x' : 'o';
+        let randomPlayer = Math.floor(Math.random() * 2);
+        player2 = (randomPlayer === 0) ? 'x' : 'o';
     }
 
     playing = true;
-    currentPlayer = player1;
+
+    let randomStart = Math.floor(Math.random() * 2);
+
+    if(randomStart === 0) {
+        currentPlayer = player1;
+    }
+    else {
+        currentPlayer = player2;
+        computerPlay();
+    }
+
+    renderInfo();
 }
 
 function reset () {
@@ -107,6 +134,7 @@ function reset () {
 
     document.querySelectorAll('.item').forEach(item => {
         item.classList.remove("won");
+        item.classList.remove("choosed");
     });
 }
 
