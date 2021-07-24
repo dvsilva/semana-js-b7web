@@ -8,3 +8,4 @@
 - [Projeto 4 - Jogo da Velha Original](https://dvsilva.github.io/semana-js-b7web/projeto4/index-original.html)
 - [Projeto 4 - Jogo da Velha Vs PC](https://dvsilva.github.io/semana-js-b7web/projeto4/)
 - [Projeto 5 - Mini Paint](https://dvsilva.github.io/semana-js-b7web/projeto5/)
+- [Projeto 6 - Quiz](https://dvsilva.github.io/semana-js-b7web/projeto6/)
